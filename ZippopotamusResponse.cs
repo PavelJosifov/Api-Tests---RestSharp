@@ -11,12 +11,12 @@ namespace URL_tests
 
     internal class ZippopotamusResponse
     {
-        public ZippopotamusResponse(string postcode, string country, string countryabbreviation, Place[]places)
+        public ZippopotamusResponse(string postcode, string country, string countryabbreviation, List<Place> places)
         {
             this.PostCode = postcode;
             this.Country = country;
             this.CountryAbbreviation = countryabbreviation;
-            this.Places = places;
+            this.places = places;
         }
         public ZippopotamusResponse()
         {
@@ -30,11 +30,11 @@ namespace URL_tests
         [JsonPropertyName("country abbreviation")]
         public string CountryAbbreviation { get; set; }
         [JsonPropertyName("places")]
-        public Place[] Places { get; set; }
-
+        new List<Place> places { get; set; }
+   
 
     }
-    public class Place
+        public class Place
     {
         public Place(string placename, string longtitude, string state, string stateabbreviation, string latitude)
         {
@@ -48,6 +48,7 @@ namespace URL_tests
         {
 
         }
+
         [JsonPropertyName("place name")]
         public string PlaceName { get; set; }
         [JsonPropertyName("longitude")]

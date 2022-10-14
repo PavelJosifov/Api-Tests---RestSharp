@@ -32,20 +32,19 @@ namespace URL_tests
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
             var ActualResult = System.Text.Json.JsonSerializer.Deserialize<ZippopotamusResponse>(response.Content);
-            var places = new Place[]
-
+            var Places = new List<Place>()
             {
-               new Place("Русе / Ruse","25.9708","Русе / Ruse","RSE","43.8564" )
-
+                new Place(){PlaceName = "Русе / Ruse" },
+                new Place(){ Longitude = "25.9708" },
+                new Place(){ State = "Русе / Ruse" },
+                new Place(){ StateAbbreviation = "RSE" },
+                new Place(){ Latitude = "43.8564" }
             };
-            var expectedResponse = new ZippopotamusResponse("7000", "Bulgaria", "BG", places);
-
-
+            var expectedResponse = new ZippopotamusResponse("7000", "Bulgaria", "BG", Places);
 
             AssertEqualObjects(expectedResponse, ActualResult);
 
         }
-
         private void AssertEqualObjects(object obj1, object obj2)
         {
             string obj1JSON = System.Text.Json.JsonSerializer.Serialize(obj1);
